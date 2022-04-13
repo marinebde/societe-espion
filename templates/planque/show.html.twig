@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Planque{% endblock %}
+
+{% block body %}
+    <h1>Planque</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ planque.id }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ planque.code }}</td>
+            </tr>
+            <tr>
+                <th>Addresse</th>
+                <td>{{ planque.address }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ planque.country }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ planque.type }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_planque_index') }}">Retour</a>
+
+    <a href="{{ path('app_planque_edit', {'id': planque.id}) }}">Modifier</a>
+
+    {{ include('planque/_delete_form.html.twig') }}
+{% endblock %}

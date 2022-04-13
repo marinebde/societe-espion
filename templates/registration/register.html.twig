@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel Administrateur{% endblock %}
+
+{% block body %}
+    <h1>Nouvel Administrateur</h1>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.lastname, {
+            label: 'Nom: '
+        }) }}
+        {{ form_row(registrationForm.firstname, {
+            label: 'Prénom: '
+        }) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Mot de Passe: '
+        }) }}
+        {{ form_row(registrationForm.agreeTerms, {
+            label: 'Acceptez les conditions'
+        }) }}
+
+        <button type="submit" class="btn">Enregistrer</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}
