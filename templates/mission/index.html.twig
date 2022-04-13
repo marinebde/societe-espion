@@ -65,7 +65,9 @@
                 </td>
                 <td>
                     <a href="{{ path('app_mission_show', {'id': mission.id}) }}">Voir</a>
+                    {% if is_granted('ROLE_USER') %}
                     <a href="{{ path('app_mission_edit', {'id': mission.id}) }}">Modifier</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -75,6 +77,7 @@
         {% endfor %}
         </tbody>
     </table>
-
+    {% if is_granted('ROLE_USER') %}
     <a href="{{ path('app_mission_new') }}">Créer nouvelle</a>
+    {% endif %}
 {% endblock %}

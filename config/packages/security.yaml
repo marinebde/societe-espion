@@ -47,7 +47,6 @@ security:
         - { path: '^/cible', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
         - { path: '^/contact', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
         - { path: '^/planque', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
-        - { path: '^/mission', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
         - { path: '^/new', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
         - { path: '^/edit', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
         - { path: '^/register', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
