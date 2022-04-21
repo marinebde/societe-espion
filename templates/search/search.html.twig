@@ -1,0 +1,11 @@
+{{ form_start(form, {attr: {class: 'filter js-filter-form'}}) }}
+    {{ form_row(form.q) }}
+
+    <h5>Pays</h5>
+    {{ form_row(form.countries) }}
+
+    <h5>Spécialité</h5>
+    {{ form_row(form.specialites) }}
+
+    <button type="submit" class="btn btn-pr">Filtrer</button
+{{ form_end(form) }}

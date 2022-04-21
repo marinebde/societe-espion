@@ -4,12 +4,16 @@ namespace App\Controller;
 
 use App\Entity\Mission;
 use App\Form\MissionType;
+use App\Data\SearchData;
+use App\Form\SearchForm;
 use App\Repository\MissionRepository;
+use PHPUnit\Util\Json;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @Route("/mission")
@@ -19,10 +23,20 @@ class MissionController extends AbstractController
     /**
      * @Route("/", name="app_mission_index", methods={"GET"})
      */
-    public function index(MissionRepository $missionRepository): Response
+    public function index(MissionRepository $repository, Request $request): Response
     {
+        $data = new SearchData();
+        $form = $this->createForm(SearchForm::class, $data);
+        $form->handleRequest($request);
+        $missions = $repository->findSearch($data);
+        if($request->isXmlHttpRequest()) {
+            return new JsonResponse([
+                'content' => $this->renderView('mission/_list.html.twig', ['missions' => $missions])
+            ]);
+        }
         return $this->render('mission/index.html.twig', [
-            'missions' => $missionRepository->findAll(),
+            'missions' => $missions,
+            'form' => $form->createView()
         ]);
     }
 

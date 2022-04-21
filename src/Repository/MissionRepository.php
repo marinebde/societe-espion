@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Mission;
+use App\Data\SearchData;
+use App\Form\SearchForm;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
@@ -33,22 +35,6 @@ class MissionRepository extends ServiceEntityRepository
         }
     }
 
-    public function findBySpeciality()
-    {
-        return $this->createQueryBuilder('m')
-            ->select('m.speciality')
-            ->join('agent_specialite as', 'm', 'WITH', 'as.specialite_id = m.speciality_id' )
-            ->orderBy('m.speciality', 'ASC')
-        ;
-    }
-
-    public function findContact(Mission $entity, bool $flush = true): void
-    {
-        $this->_em->persist($entity);
-        if ($flush) {
-            $this->_em->flush();
-        }
-    }
 
     /**
      * @throws ORMException
@@ -61,6 +47,40 @@ class MissionRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+
+    /**
+     * Récupère les missions en lien avec une recherche
+     * @return Mission[]
+     */
+    public function findSearch(SearchData $search): array
+    {
+        $query = $this
+            ->createQueryBuilder('m')
+            ->select('s', 'm')
+            ->join('m.speciality', 's');
+
+            if(!empty($search->q)) {
+                $query = $query
+                    ->andWhere('m.title LIKE :q')
+                    ->setParameter('q', "%{$search->q}%");
+            }
+
+            if(!empty($search->countries)) {
+                $query = $query
+                    ->andWhere('m.id IN (:countries)')
+                    ->setParameter('countries', $search->countries);
+            }
+
+            if(!empty($search->specialites)) {
+                $query = $query
+                    ->andWhere('s.id IN (:specialites)')
+                    ->setParameter('specialites', $search->specialites);
+            }
+
+
+        return $query->getQuery()->getResult();
+    }
+
 
     // /**
     //  * @return Mission[] Returns an array of Mission objects

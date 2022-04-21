@@ -30,8 +30,7 @@ class MissionType extends AbstractType
             ->add('speciality', EntityType::class, [
                 'label' => 'Choisir une spécialité',
                 'class' => Specialite::class,
-                'choice_label' => 'name',
-                'by_reference' => false
+                'choice_label' => 'name'
             ])
             ->add('agents', EntityType::class, [
                 'label' => 'Choisir un ou des agent(s)',
