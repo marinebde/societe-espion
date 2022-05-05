@@ -3,9 +3,13 @@
 {% block title %}Liste des Contacts{% endblock %}
 
 {% block body %}
-    <h1>Liste des Contacts</h1>
+    <h1 class="title">Liste des Contacts</h1>
 
-    <table class="table">
+    <button class="new-container">
+        <a href="{{ path('app_contact_new') }}" class="new">Créer nouveau</a>
+    </button>
+
+    <table class="table table-index-page">
         <thead>
             <tr>
                 <th>Id</th>
@@ -39,5 +43,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_contact_new') }}">Créer nouveau</a>
 {% endblock %}

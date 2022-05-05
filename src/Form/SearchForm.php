@@ -6,6 +6,7 @@ use App\Data\SearchData;
 use App\Entity\Mission;
 use App\Entity\Specialite;
 use App\Repository\MissionRepository;
+use PhpParser\Parser\Multiple;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -31,15 +32,15 @@ class SearchForm extends AbstractType
             'label' => false,
             'required' => false,
             'class' => Specialite::class,
-            'expanded' => true,
-            'multiple' => true
+            'multiple' => true,
+            'expanded' => true
         ])
         ->add('countries', EntityType::class, [
             'label' => false,
             'required' => false,
             'class' => Mission::class,
-            'expanded' => true,
-            'multiple' => true
+            'multiple' => true,
+            'expanded' => true
         ]);
 }
 

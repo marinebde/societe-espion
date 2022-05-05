@@ -1,38 +1,31 @@
-{% for mission in missions %}
-    <tr>
+<table class="table">
+
+         {% if is_granted('ROLE_USER') %}
+             <button class="new-container-mission">
+                 <a href="{{ path('app_mission_new') }}" class="new">Créer nouvelle</a>
+            </button>
+         {% endif %}
+    <thead class="titre-colonne">
+        <tr>
+            <th>Id</th>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Nom de Code</th>
+            <th>Pays</th>
+            <th>Specialité</th>
+            <th>Action(s)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for mission in missions %}
+            <tr>
                 <td>{{ mission.id }}</td>
                 <td>{{ mission.title }}</td>
                 <td>{{ mission.description }}</td>
                 <td>{{ mission.codeName }}</td>
                 <td>{{ mission.country }}</td>
-                <td>{% if mission.speciality %}
+                 <td>{% if mission.speciality %}
                     {{ mission.speciality.name }} 
-                    {% endif %}
-                </td>
-                <td>{% for agents in mission.agents %}
-                    {{ agents.identificationCode }}
-                    {% endfor %}
-                </td>
-                <td>{% for contacts in mission.contacts %}
-                    {{ contacts.codeName }}
-                    {% endfor %}
-                </td>
-                <td>{% for cibles in mission.cibles %}
-                    {{ cibles.codeName }}
-                    {% endfor %}
-                </td>
-                <td>{% for planques in mission.planques %}
-                    {{ planques.code }}
-                    {% endfor %}
-                </td>
-                <td>{{ mission.startDate ? mission.startDate|date('Y-m-d') : '' }}</td>
-                <td>{{ mission.endDate ? mission.endDate|date('Y-m-d') : '' }}</td>
-                <td>{% if mission.status %}
-                    {{ mission.status.name }} 
-                    {% endif %}
-                </td>
-                <td>{% if mission.type %}
-                    {{ mission.type.name }} 
                     {% endif %}
                 </td>
                 <td>
@@ -46,4 +39,6 @@
             <tr>
                 <td colspan="9">pas de résultat trouvé</td>
             </tr>
-{% endfor %}
+        {% endfor %}
+    </tbody>
+</table>

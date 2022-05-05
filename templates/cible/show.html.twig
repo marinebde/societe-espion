@@ -3,40 +3,44 @@
 {% block title %}Cible{% endblock %}
 
 {% block body %}
-    <h1>Cible</h1>
+    <h1 class="title-show-page">{{ cible.lastname }} {{ cible.firstname }}</h1>
 
-    <table class="table">
+    <table class="table table-show">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th class="th-show">Id</th>
                 <td>{{ cible.id }}</td>
             </tr>
             <tr>
-                <th>Nom</th>
+                <th class="th-show">Nom</th>
                 <td>{{ cible.lastname }}</td>
             </tr>
             <tr>
-                <th>Prénom</th>
+                <th class="th-show">Prénom</th>
                 <td>{{ cible.firstname }}</td>
             </tr>
             <tr>
-                <th>Date de Naissance</th>
+                <th class="th-show">Date de Naissance</th>
                 <td>{{ cible.dateOfBirth ? cible.dateOfBirth|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>Nationalité</th>
+                <th class="th-show">Nationalité</th>
                 <td>{{ cible.nationality }}</td>
             </tr>
             <tr>
-                <th>Code</th>
+                <th class="th-show">Code</th>
                 <td>{{ cible.codeName }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_cible_index') }}">Retour</a>
+    <div class="show-actions">
+        <a href="{{ path('app_cible_index') }}" class="show-retour">Retour</a>
+        <a href="{{ path('app_cible_edit', {'id': cible.id}) }}" class="show-modifier">Modifier</a>
+    </div>
 
-    <a href="{{ path('app_cible_edit', {'id': cible.id}) }}">Modifier</a>
+    <div class="show-supprimer">
+        {{ include('cible/_delete_form.html.twig') }}
+    </div>
 
-    {{ include('cible/_delete_form.html.twig') }}
 {% endblock %}

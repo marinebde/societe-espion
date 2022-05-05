@@ -3,9 +3,13 @@
 {% block title %}Liste des Specialités{% endblock %}
 
 {% block body %}
-    <h1>Liste des Specialités</h1>
+    <h1 class="title">Liste des Specialités</h1>
 
-    <table class="table">
+    <button class="new-container">
+        <a href="{{ path('app_specialite_new') }}" class="new">Créer nouvelle</a>
+    </button>
+
+    <table class="table table-index-page">
         <thead>
             <tr>
                 <th>Id</th>
@@ -31,5 +35,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_specialite_new') }}">Créer nouvelle</a>
 {% endblock %}

@@ -1,11 +1,14 @@
 {{ form_start(form, {attr: {class: 'filter js-filter-form'}}) }}
-    {{ form_row(form.q) }}
 
-    <h5>Pays</h5>
-    {{ form_row(form.countries) }}
+    <div class="div-recherche">
+    {{ form_row(form.q, {attr: {class: 'recherche'}}) }}
+    </div>
 
-    <h5>Spécialité</h5>
-    {{ form_row(form.specialites) }}
 
-    <button type="submit" class="btn btn-pr">Filtrer</button
+    <h5 class ="pays">Pays</h5>
+    {{ form_row(form.countries, {attr: {class: 'filter-country'}}) }}
+
+    <h5 class="specialite">Spécialité</h5>
+    {{ form_row(form.specialites, {attr: {class: 'specialites'}}) }}
+
 {{ form_end(form) }}

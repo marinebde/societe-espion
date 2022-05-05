@@ -3,9 +3,9 @@
 {% block title %}Modifier Contact{% endblock %}
 
 {% block body %}
-    <h1>Modifier Contact</h1>
+    <h1 class="title">Modifier Contact</h1>
 
-    {{ include('contact/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('contact/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
     <a href="{{ path('app_contact_index') }}">Retour</a>
 

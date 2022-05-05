@@ -10,9 +10,7 @@ use App\Entity\Planque;
 use App\Entity\Specialite;
 use App\Entity\Status;
 use App\Entity\TypeMission;
-use App\Repository\AgentRepository;
-use App\Repository\CibleRepository;
-use App\Repository\MissionRepository;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,47 +26,52 @@ class MissionType extends AbstractType
             ->add('code_name')
             ->add('country')
             ->add('speciality', EntityType::class, [
-                'label' => 'Choisir une spécialité',
+                'label' => 'Choisir une spécialité: ',
+                'placeholder' => 'Choisir une spécialité',
                 'class' => Specialite::class,
                 'choice_label' => 'name'
             ])
             ->add('agents', EntityType::class, [
-                'label' => 'Choisir un ou des agent(s)',
+                'label' => 'Choisir un ou des agent(s): ',
                 'class' => Agent::class,
                 'choice_label' => 'identification_code',
                 'multiple' => true,
-                'by_reference' => false
+                'expanded' => true
             ])
             ->add('contacts', EntityType::class, [
-                'label' => 'Selectionner le(les) contact(s)',
+                'label' => 'Selectionner le(les) contact(s): ',
                 'class' => Contact::class,
                 'choice_label' => 'code_name',
                 'multiple' => true,
-                'by_reference' => false
+                'expanded' => true
             ])
             ->add('cibles', EntityType::class, [
-                'label' => 'Selectionner la(les) cible(s)',
+                'label' => 'Selectionner la(les) cible(s): ',
                 'class' => Cible::class,
                 'choice_label' => 'code_name',
                 'multiple' => true,
-                'by_reference' => false
+                'expanded' => true
             ])
             ->add('planques', EntityType::class, [
-                'label' => 'Selectionner la(les) planque(s)',
+                'label' => 'Selectionner la(les) planque(s): ',
                 'class' => Planque::class,
                 'choice_label' => 'code',
                 'multiple' => true,
-                'by_reference' => false
+                'expanded' => true,
             ])
-            ->add('start_date')
-            ->add('end_date')
+            ->add('start_date', DateType::class, [
+                'widget' => 'single_text'
+            ])
+            ->add('end_date', DateType::class, [
+                'widget' => 'single_text'
+            ])
             ->add('status', EntityType::class, [
-                'label' => 'Statut de la Mission',
+                'label' => 'Statut de la Mission: ',
                 'class' => Status::class,
                 'choice_label' => 'name'
             ])
             ->add('type', EntityType::class, [
-                'label' => 'Type de Mission',
+                'label' => 'Type de Mission: ',
                 'class' => TypeMission::class,
                 'choice_label' => 'name'
             ]);

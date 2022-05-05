@@ -3,36 +3,40 @@
 {% block title %}Planque{% endblock %}
 
 {% block body %}
-    <h1>Planque</h1>
+    <h1 class="title-show-page">Planque : {{ planque.code }}</h1>
 
-    <table class="table">
+    <table class="table table-show">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th class="th-show">Id</th>
                 <td>{{ planque.id }}</td>
             </tr>
             <tr>
-                <th>Code</th>
+                <th class="th-show">Code</th>
                 <td>{{ planque.code }}</td>
             </tr>
             <tr>
-                <th>Addresse</th>
+                <th class="th-show">Addresse</th>
                 <td>{{ planque.address }}</td>
             </tr>
             <tr>
-                <th>Pays</th>
+                <th class="th-show">Pays</th>
                 <td>{{ planque.country }}</td>
             </tr>
             <tr>
-                <th>Type</th>
+                <th class="th-show">Type</th>
                 <td>{{ planque.type }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_planque_index') }}">Retour</a>
+    <div class="show-actions">
+        <a href="{{ path('app_planque_index') }}" class="show-retour">Retour</a>
+        <a href="{{ path('app_planque_edit', {'id': planque.id}) }}" class="show-modifier">Modifier</a>
+    </div>
 
-    <a href="{{ path('app_planque_edit', {'id': planque.id}) }}">Modifier</a>
-
-    {{ include('planque/_delete_form.html.twig') }}
+    <div class="show-supprimer">
+        {{ include('planque/_delete_form.html.twig') }}
+    </div>
+    
 {% endblock %}

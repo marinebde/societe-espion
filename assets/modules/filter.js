@@ -15,8 +15,8 @@ export default class Filter {
         if (element === null) {
             return
         }
-        this.form = element.querySelector('.js-filter-form')
-        this.content = element.querySelector('.js-filter-content')
+        this.form= element.querySelector('.js-filter-form')
+        this.content= element.querySelector('.js-filter-content')
         this.bindEvents()
     }
 
@@ -24,37 +24,31 @@ export default class Filter {
      * Ajoute les comportements aux différents éléments
      */
     bindEvents() {
-        const aClickListener = e => {
-            if (e.target.tagName === 'A') {
-              e.preventDefault()
-              this.loadUrl(e.target.getAttribute('href'))
-            }
-          }
-        this.form.querySelectorAll('input[type=checkbox]').forEach(input => {
-            input.addEventListener('change', this.loadForm.bind(this))
-            })
-    };
+        this.form.addEventListener('change', this.loadForm.bind(this))
+    }
 
     async loadForm () {
-        const data = new FormData(this.form);
-        const url = new URL(this.form.getAttribute('action') || window.location.href);
-        const params = new URLSearchParams();
+
+        const data = new FormData(this.form)
+        const url = new URL(this.form.getAttribute('action') || window.location.href)
+        const params = new URLSearchParams()
+        
         data.forEach((value, key) => {
             params.append(key, value)
-        })
+        } )
         return this.loadUrl(url.pathname + '?' + params.toString())
     }
 
     async loadUrl (url) {
-        const response = await fetch(url, {
+        const ajaxUrl = url += '&ajax=1'
+        const response = await fetch(ajaxUrl, {
             headers: {
-                'X-Requested-With' : 'XMLHttpRequest'
+                'X-Requested-With': 'XMLHttpRequest' 
             }
         })
-        if(response.status >= 200 && response.status > 300) {
+        if (response.status >= 200 && response.status < 300) {
             const data = await response.json()
             this.content.innerHTML = data.content
-            history.replaceState({}, '', url)
         } else {
             console.error(response)
         }

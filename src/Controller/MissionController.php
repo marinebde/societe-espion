@@ -7,7 +7,6 @@ use App\Form\MissionType;
 use App\Data\SearchData;
 use App\Form\SearchForm;
 use App\Repository\MissionRepository;
-use PHPUnit\Util\Json;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +28,7 @@ class MissionController extends AbstractController
         $form = $this->createForm(SearchForm::class, $data);
         $form->handleRequest($request);
         $missions = $repository->findSearch($data);
-        if($request->isXmlHttpRequest()) {
+        if($request->get('ajax')) {
             return new JsonResponse([
                 'content' => $this->renderView('mission/_list.html.twig', ['missions' => $missions])
             ]);

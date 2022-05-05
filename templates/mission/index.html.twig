@@ -1,89 +1,27 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Liste Missions{% endblock %}
 
 {% block body %}
-    <h1>Liste des Missions</h1>
-
+    <h1 class="title">Liste des Missions</h1>
+    
     <div class="js-filter">
 
+        <div class="search">
         {% include 'search/search.html.twig' %}
+        </div>
 
-        <table class="table js-filter-content">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Description</th>
-                <th>Nom de Code</th>
-                <th>Pays</th>
-                <th>Specialité</th>
-                <th>Agent(s)</th>
-                <th>Contact(s)</th>
-                <th>Cible(s)</th>
-                <th>Planque(s)</th>
-                <th>Date Début</th>
-                <th>Date Fin</th>
-                <th>Statut</th>
-                <th>Type</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for mission in missions %}
-            <tr>
-                <td>{{ mission.id }}</td>
-                <td>{{ mission.title }}</td>
-                <td>{{ mission.description }}</td>
-                <td>{{ mission.codeName }}</td>
-                <td>{{ mission.country }}</td>
-                 <td>{% if mission.speciality %}
-                    {{ mission.speciality.name }} 
-                    {% endif %}
-                </td>
-                <td>{% for agents in mission.agents %}
-                    {{ agents.identificationCode }}
-                    {% endfor %}
-                </td>
-                <td>{% for contacts in mission.contacts %}
-                    {{ contacts.codeName }}
-                    {% endfor %}
-                </td>
-                <td>{% for cibles in mission.cibles %}
-                    {{ cibles.codeName }}
-                    {% endfor %}
-                </td>
-                <td>{% for planques in mission.planques %}
-                    {{ planques.code }}
-                    {% endfor %}
-                </td>
-                <td>{{ mission.startDate ? mission.startDate|date('Y-m-d') : '' }}</td>
-                <td>{{ mission.endDate ? mission.endDate|date('Y-m-d') : '' }}</td>
-                <td>{% if mission.status %}
-                    {{ mission.status.name }} 
-                    {% endif %}
-                </td>
-                <td>{% if mission.type %}
-                    {{ mission.type.name }} 
-                    {% endif %}
-                </td>
-                <td>
-                    <a href="{{ path('app_mission_show', {'id': mission.id}) }}">Voir</a>
-                    {% if is_granted('ROLE_USER') %}
-                    <a href="{{ path('app_mission_edit', {'id': mission.id}) }}">Modifier</a>
-                    {% endif %}
-                </td>
-            </tr> 
-        {% else %}
-            <tr>
-                <td colspan="9">pas de résultat trouvé</td>
-            </tr>
-        </tbody>
-        </table>
-        {% if is_granted('ROLE_USER') %}
-        <a href="{{ path('app_mission_new') }}">Créer nouvelle</a>
-        {% endif %}
-        {% endfor %}
+        <div class="main">
+            <div class="number-mission">
+                <span>Nombre de missions :<span>
+                {{ missions|length }}
+
+            </div>
+             <div class="js-filter-content">
+                {% include 'mission/_list.html.twig' %}
+             </div>
+        </div>
 
     </div>
 

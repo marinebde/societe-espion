@@ -6,10 +6,9 @@ use App\Entity\Agent;
 use App\Entity\Specialite;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Choice;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class AgentType extends AbstractType
 {
@@ -18,14 +17,17 @@ class AgentType extends AbstractType
         $builder
             ->add('lastname')
             ->add('firstname')
-            ->add('date_of_birth')
+            ->add('date_of_birth', DateType::class, [
+                'widget' => 'single_text'
+            ])
             ->add('identification_code')
             ->add('nationality')
             ->add('specialite', EntityType::class, [
                 'class' => Specialite::class,
+                'label' => 'Spécialité: ',
                 'choice_label' => 'name',
-                'by_reference' => false,
-                'multiple' => true,      
+                'multiple' => true,   
+                'expanded' => true   
                 ]);
         }
 
