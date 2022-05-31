@@ -7,6 +7,7 @@ use App\Form\MissionType;
 use App\Data\SearchData;
 use App\Form\SearchForm;
 use App\Repository\MissionRepository;
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

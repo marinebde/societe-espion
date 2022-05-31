@@ -13,6 +13,7 @@ use App\Entity\TypeMission;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,7 +25,19 @@ class MissionType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('code_name')
-            ->add('country')
+            ->add('country', ChoiceType::class, [
+                'choices' => [
+                    'France' => 'France',
+                    'Angleterre' => 'Angleterre',
+                    'Suisse' => 'Suisse',
+                    'Allemagne' => 'Allemagne',
+                    'Espagne' => 'Espagne',
+                    'Portugal' => 'Portugal',
+                    'Italie' => 'Italie',
+                    'Belgique' => 'Belgique',
+                    'Pologne' => 'Pologne',
+                ]
+            ])
             ->add('speciality', EntityType::class, [
                 'label' => 'Choisir une spécialité: ',
                 'placeholder' => 'Choisir une spécialité',

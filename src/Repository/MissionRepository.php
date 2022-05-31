@@ -81,6 +81,21 @@ class MissionRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+    /**
+     * Récupère les nationalités de l'agent 
+     */
+    public function findNationality()
+    {
+        $this
+            ->createQueryBuilder ('m')
+            ->select ('*')
+            ->join('m.agents', 'a')
+            ->join('m.cibles', 'c')
+            ->where('a.nationality = c.nationality')
+            ->getQuery()
+            ->getResult();
+    }
+
 
     // /**
     //  * @return Mission[] Returns an array of Mission objects
