@@ -9,7 +9,7 @@ CREATE TABLE admin
 (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     email VARCHAR(180) UNIQUE NOT NULL,
-    roles json,
+    roles JSON NOT NULL,
     password VARCHAR(255) NOT NULL,
     lastname VARCHAR(255) NOT NULL,
     firstname VARCHAR(255) NOT NULL,
