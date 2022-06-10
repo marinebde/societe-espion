@@ -4,7 +4,7 @@ security:
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
         App\Entity\Admin:
-            algorithm: plaintext
+            algorithm: auto
 
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
@@ -40,20 +40,20 @@ security:
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
-    #access_control:
+    access_control:
       # or require ROLE_ADMIN or IS_AUTHENTICATED_FULLY for /admin*
-        #- { path: '^/agent', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
-        #- { path: '^/specialite', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
-        #- { path: '^/cible', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
-        #- { path: '^/contact', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
-        #- { path: '^/planque', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
-        #- { path: '^/new', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
-        #- { path: '^/edit', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
-        #- { path: '^/register', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: '^/agent', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
+        - { path: '^/specialite', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
+        - { path: '^/cible', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
+        - { path: '^/contact', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
+        - { path: '^/planque', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
+        - { path: '^/new', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
+        - { path: '^/edit', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
+        - { path: '^/register', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
+        - { path: ^/profile, roles: ROLE_USER }
 
-    #role_hierarchy:
-        #ROLE_ADMIN: ROLE_USER
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
 
 #when@test:
    # security:
