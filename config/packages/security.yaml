@@ -21,12 +21,10 @@ security:
             lazy: true
             provider: app_user_provider
             custom_authenticator: App\Security\AppAuthenticator
-            #pattern: app_mission_index
             form_login:
                 # "login" is the name of the route created previously
                 login_path: app_login
                 check_path: app_login
-                default_target_path: app_mission_index
                 
             entry_point: form_login
             logout:
