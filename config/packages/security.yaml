@@ -4,7 +4,7 @@ security:
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
         App\Entity\Admin:
-            algorithm: bcrypt
+            algorithm: plaintext
 
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
@@ -21,10 +21,11 @@ security:
             lazy: true
             provider: app_user_provider
             custom_authenticator: App\Security\AppAuthenticator
+            pattern: app_mission_index
             form_login:
                 # "login" is the name of the route created previously
                 login_path: app_login
-                check_path: app_login
+                check_path: target_path
                 
             entry_point: form_login
             logout:
