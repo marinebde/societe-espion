@@ -35,6 +35,7 @@ class SearchForm extends AbstractType
             'label' => false,
             'required' => false,
             'class' => Mission::class,
+            'choice_label' => 'country',
             'multiple' => true,
             'expanded' => true
         ]);
