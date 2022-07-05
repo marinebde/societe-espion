@@ -51,7 +51,6 @@ security:
         - { path: '^/planque', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
         - { path: '^/new', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
         - { path: '^/edit', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
-        - { path: '^/register', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
         - { path: ^/profile, roles: ROLE_USER }
 
     role_hierarchy:
